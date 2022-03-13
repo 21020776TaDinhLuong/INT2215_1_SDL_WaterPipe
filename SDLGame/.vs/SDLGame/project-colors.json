@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "5fd59b62-cb69-43af-b7b3-9e889634d96a": {
+      "ProjectGuid": "5fd59b62-cb69-43af-b7b3-9e889634d96a",
+      "DisplayName": "SDLGame",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
