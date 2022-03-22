@@ -15,6 +15,7 @@ bool Init()
     }
 
     g_screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE);
+    SDL_WM_SetCaption("Pipe Water", NULL);
 
     if (g_screen == NULL)
         return false;
