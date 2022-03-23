@@ -80,7 +80,11 @@ int main(int arc, char* argv[])
 
         if (board.CheckBoard())
         {
-
+            g_bkground = SDLCommonFunc::LoadImage("WinScreen.png");
+            SDLCommonFunc::ApplySurface(g_bkground, g_screen, 0, 0, SCREEN_HEIGHT, SCREEN_WIDTH);
+            time_game.CreatFontText(g_font_text, g_screen);
+            if (SDL_Flip(g_screen) == -1)
+                return 0;
             if (MessageBox(NULL, L"You Win!", L"Infomation", MB_ICONINFORMATION) == IDOK)
             {                
                 break;
