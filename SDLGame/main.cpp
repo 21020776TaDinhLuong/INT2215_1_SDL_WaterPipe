@@ -78,8 +78,6 @@ int main(int arc, char* argv[])
         if (SDL_Flip(g_screen) == -1)
             return 0;
 
-        //board.print();
-
 
         if (board.CheckBoard())
         {
