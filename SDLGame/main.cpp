@@ -61,12 +61,13 @@ int main(int arc, char* argv[])
                 is_quit = true;
                 break;
             }
-         
         }
         
         board.HandleInputAction(g_even);
+        board.convert();
         board.Show_Board(g_screen);
         //Show time for game
+
         std::string str_time = "Time: ";
         Uint32 time_val = TIME_PLAYING - SDL_GetTicks() / 1000;
         std::string str_val = std::to_string(time_val);
@@ -76,13 +77,12 @@ int main(int arc, char* argv[])
         time_game.CreatFontText(g_font_text, g_screen);
         if (SDL_Flip(g_screen) == -1)
             return 0;
-        
+
+        //board.print();
+
 
         if (board.CheckBoard())
         {
-            g_bkground = SDLCommonFunc::LoadImage("WinScreen.png");
-            SDLCommonFunc::ApplySurface(g_bkground, g_screen, 0, 0, SCREEN_HEIGHT, SCREEN_WIDTH);
-            time_game.CreatFontText(g_font_text, g_screen);
             if (SDL_Flip(g_screen) == -1)
                 return 0;
             if (MessageBox(NULL, L"You Win!", L"Infomation", MB_ICONINFORMATION) == IDOK)

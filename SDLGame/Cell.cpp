@@ -1,10 +1,11 @@
 #include "Cell.h"
-
+#include <iostream>
 Cell::Cell()
 {
     rect_.x = 0;
     rect_.y = 0;
     val_ = 0;
+    watered = 0;
 }
 
 Cell::~Cell()
@@ -31,21 +32,25 @@ void Cell::Show(SDL_Surface* des)
     }
 }
 void Cell::HandleInputAction(SDL_Event events)
-{
+{   
     if (events.type == SDL_MOUSEBUTTONDOWN)
     {
        
-        if (events.button.button == SDL_BUTTON_LEFT)
+        if (events.button.button == SDL_BUTTON_LEFT || events.button.button == SDL_BUTTON_RIGHT)
         {
             val_++;
-            if (val_ % 4 == 0) val_ = val_ - 4;
+            val_ %= 18;
+            if (val_ < 14 && val_ % 4 == 0) val_ = val_ - 4;
             if (val_ == 14) val_ = 12;
-        }
-        else if (events.button.button == SDL_BUTTON_RIGHT)
-        {
-            val_++;
-            if (val_ % 4 == 0) val_ = val_ - 4;
-            if (val_ == 14) val_ = 12;
+            if (val_ == 18) val_ = 14;
         }
     }
+}
+void Cell::update() 
+{
+    if (watered && val_ < 14) {
+        val_ += 18;
+    }
+    if (!watered)
+        val_ %= 18;
 }

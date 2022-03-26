@@ -18,10 +18,14 @@ public:
     SDL_Rect GetRect() const { return rect_; }
     void set_val(const int& val) { val_ = val; }
     int get_val() const { return  val_; }
+    bool get_watered() const { return watered; }
+    void set_watered(const bool& water) { watered = water; }
+    void update();
 private:
     int val_;
     SDL_Rect rect_;
     SDL_Surface* p_object;
+    bool watered;
 };
 
 
