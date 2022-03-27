@@ -9,6 +9,7 @@
 #include <SDL_mixer.h>
 #include <SDL_ttf.h>
 
+
 //Screen
 const int WIDTH_BACKGROUND = 640;
 const int HEIGHT_BACKGROUND = 480;
@@ -28,6 +29,7 @@ const int TIME_PLAYING = 60;
 static SDL_Surface* g_screen = NULL;
 static SDL_Surface* g_bkground = NULL;
 static SDL_Event g_even;
+static SDL_Surface* g_menu = NULL;
 
 
 namespace SDLCommonFunc
@@ -35,6 +37,8 @@ namespace SDLCommonFunc
 	SDL_Surface* LoadImage(std::string file_path);
 	SDL_Rect ApplySurface(SDL_Surface* src, SDL_Surface* des, int x, int y, int w, int h);
 	void CleanUp();
+	int ShowMenu(SDL_Surface* des, TTF_Font* font);
+	bool CheckFocusWithRect(const int& x, const int& y, const SDL_Rect& rect);
 
 }
 
