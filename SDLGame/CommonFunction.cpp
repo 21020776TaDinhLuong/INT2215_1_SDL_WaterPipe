@@ -35,6 +35,7 @@ void SDLCommonFunc::CleanUp()
 {
     SDL_FreeSurface(g_screen);
     SDL_FreeSurface(g_bkground);
+    SDL_FreeSurface(g_menu);
 }
 bool SDLCommonFunc::CheckFocusWithRect(const int& x, const int& y, const SDL_Rect& rect)
 {

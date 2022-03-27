@@ -50,7 +50,7 @@ bool Board::CheckBoard()
 		}
 	}
 	return ok;
-	//return (arr[0][0].get_val() == 7 && arr[0][1].get_val() == 3 && arr[0][2].get_val() == 1 && arr[0][3].get_val() == 6 && arr[1][0].get_val() == 12 && arr[1][1].get_val() == 1 && arr[1][2].get_val() == 6 && arr[1][3].get_val() == 12 && arr[2][0].get_val() == 10 && arr[2][1].get_val() == 9 && arr[2][2].get_val() == 11 && arr[2][3].get_val() == 5 && arr[3][0].get_val() == 2 && arr[3][1].get_val() == 4 && arr[3][2].get_val() == 13 && arr[3][3].get_val() == 3);
+	
 }
 void Board::HandleInputAction(SDL_Event events)
 {

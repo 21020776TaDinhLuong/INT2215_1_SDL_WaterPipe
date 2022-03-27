@@ -28,8 +28,8 @@ const int TIME_PLAYING = 60;
 //Initialize
 static SDL_Surface* g_screen = NULL;
 static SDL_Surface* g_bkground = NULL;
-static SDL_Event g_even;
 static SDL_Surface* g_menu = NULL;
+static SDL_Event g_even;
 
 
 namespace SDLCommonFunc
