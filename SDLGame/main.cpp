@@ -50,6 +50,7 @@ int main(int arc, char* argv[])
         is_quit = true;
     //Make text
     TextObject time_game;
+    TextObject score_game;
     //Make Board
     Board board;
     board.Show_Board(g_screen);
@@ -79,6 +80,14 @@ int main(int arc, char* argv[])
         time_game.SetText(str_time);
         time_game.SetRect(WIDTH_BACKGROUND - 120, 10);
         time_game.CreatFontText(g_font_text, g_screen);
+        //Show score
+        std::string str_score = "Score: ";
+        Uint32 score_val = board.score();
+        std::string str_score_val = std::to_string(score_val);
+        str_score += str_score_val;
+        score_game.SetText(str_score);
+        score_game.SetRect(WIDTH_BACKGROUND - 120, 30);
+        score_game.CreatFontText(g_font_text, g_screen);
         if (SDL_Flip(g_screen) == -1)
             return 0;
 

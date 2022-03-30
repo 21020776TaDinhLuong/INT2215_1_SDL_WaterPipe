@@ -141,6 +141,15 @@ void Board::convert()
 			else
 				arr[i][j].set_watered(false);
 }
+int Board::score()
+{
+	int score = 0;
+	for (int i = 0; i < 4; i++)
+		for (int j = 0; j < 4; j++)
+			if (arr[i][j].get_watered())
+				score++;
+	return score;
+}
 void Board::print() {
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++)

@@ -18,7 +18,7 @@ class Board
 		void HandleInputAction(SDL_Event events);
 		void print();
 		void convert();
-		
+		int score();
 		
 	private:
 		Cell arr[4][4];
