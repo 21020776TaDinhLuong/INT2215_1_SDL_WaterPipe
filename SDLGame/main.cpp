@@ -39,7 +39,7 @@ int main(int arc, char* argv[])
     if (Init() == false)
         return 0;
     // Apply Background
-    g_bkground = SDLCommonFunc::LoadImage("background.png");
+    g_bkground = SDLCommonFunc::LoadImage("image/background.png");
     if (g_bkground == NULL)
     {
         return 0;

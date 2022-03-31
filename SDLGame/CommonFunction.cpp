@@ -47,7 +47,7 @@ bool SDLCommonFunc::CheckFocusWithRect(const int& x, const int& y, const SDL_Rec
 }
 int SDLCommonFunc::ShowMenu(SDL_Surface* des, TTF_Font* font)
 {
-    g_menu = LoadImage("background2d.png");
+    g_menu = LoadImage("image/background2d.png");
     if (g_menu == NULL)
     {
         return 1;
