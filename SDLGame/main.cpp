@@ -85,6 +85,7 @@ int main(int arc, char* argv[])
         Uint32 score_val = board.score();
         std::string str_score_val = std::to_string(score_val);
         str_score += str_score_val;
+        str_score += "/16";
         score_game.SetText(str_score);
         score_game.SetRect(WIDTH_BACKGROUND - 120, 30);
         score_game.CreatFontText(g_font_text, g_screen);

@@ -16,7 +16,6 @@ class Board
 		void Show_Board(SDL_Surface* des);
 		bool CheckBoard();
 		void HandleInputAction(SDL_Event events);
-		void print();
 		void convert();
 		int score();
 		

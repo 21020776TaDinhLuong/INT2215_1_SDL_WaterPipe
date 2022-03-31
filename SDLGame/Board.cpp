@@ -150,22 +150,3 @@ int Board::score()
 				score++;
 	return score;
 }
-void Board::print() {
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++)
-			std::cerr << arr[j][i].get_val() << ' ';
-		std::cerr << '\n';
-	}
-	for (int i = 0; i < 4; i++)
-		std::cerr << "--";
-	std::cerr << '\n';
-
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++)
-			std::cerr << arr[j][i].get_watered() << ' ';
-		std::cerr << '\n';
-	}
-	for (int i = 0; i < 4; i++)
-		std::cerr << "--";
-	std::cerr << '\n';
-}
