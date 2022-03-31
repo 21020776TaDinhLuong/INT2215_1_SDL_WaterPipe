@@ -52,20 +52,25 @@ int SDLCommonFunc::ShowMenu(SDL_Surface* des, TTF_Font* font)
     {
         return 1;
     }
-    const int MenuItemNum = 2;
+    const int MenuItemNum = 3;
     SDL_Rect pos_arr[MenuItemNum];
     pos_arr[0].x = SCREEN_WIDTH/2-60;
     pos_arr[0].y = SCREEN_HEIGHT/2-60;
     pos_arr[1].x = SCREEN_WIDTH / 2-60;
     pos_arr[1].y = SCREEN_HEIGHT / 2-30 ;
+    pos_arr[2].x = SCREEN_WIDTH / 2 - 60;
+    pos_arr[2].y = SCREEN_HEIGHT / 2 ;
     TextObject text_menu[MenuItemNum];
-    text_menu[0].SetText("Play Game");
+    text_menu[0].SetText("Play GameMode1");
     text_menu[0].SetColor(TextObject::WHITE_TEXT);
     text_menu[0].SetRect(pos_arr[0].x, pos_arr[0].y);
-    text_menu[1].SetText("Exit");
+    text_menu[1].SetText("Play GameMode2");
     text_menu[1].SetColor(TextObject::WHITE_TEXT);
     text_menu[1].SetRect(pos_arr[1].x, pos_arr[1].y);
-    bool selected[MenuItemNum] = { 0,0 };
+    text_menu[2].SetText("Exit");
+    text_menu[2].SetColor(TextObject::WHITE_TEXT);
+    text_menu[2].SetRect(pos_arr[2].x, pos_arr[2].y);
+    bool selected[MenuItemNum] = { 0,0,0 };
     int xm = 0;
     int ym = 0;
     SDL_Event m_event;
@@ -82,7 +87,7 @@ int SDLCommonFunc::ShowMenu(SDL_Surface* des, TTF_Font* font)
             switch (m_event.type)
             {
             case SDL_QUIT:
-                return 1;
+                return 2;
             case SDL_MOUSEMOTION:
             {
                 xm = m_event.motion.x;
@@ -127,7 +132,7 @@ int SDLCommonFunc::ShowMenu(SDL_Surface* des, TTF_Font* font)
             case SDL_KEYDOWN:
                 if (m_event.key.keysym.sym == SDLK_ESCAPE)
                 {
-                    return 1;
+                    return 2;
                 }
 
             default:

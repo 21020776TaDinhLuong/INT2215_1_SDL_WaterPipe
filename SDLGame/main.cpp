@@ -1,11 +1,14 @@
 #include "CommonFunction.h"
 #include "Board.h"
+#include "Board5x5.h"
 #include"TextObject.h"
-#include <ctime>
-#include <iostream>
 
 #undef main
 TTF_Font* g_font_text = NULL;
+bool is_quit = false;
+//Make text
+TextObject time_game;
+TextObject score_game;
 
 bool Init()
 {
@@ -28,37 +31,19 @@ bool Init()
         return false;
     }
     return true;
+    
 }
-
-
-
-
-int main(int arc, char* argv[])
+void PlayMode1()
 {
-    bool is_quit = false;
-    if (Init() == false)
-        return 0;
-    // Apply Background
-    g_bkground = SDLCommonFunc::LoadImage("image/background.png");
-    if (g_bkground == NULL)
-    {
-        return 0;
-    }
-    //Menu
-    int num_menu = SDLCommonFunc::ShowMenu(g_screen, g_font_text);
-    if (num_menu == 1)
-        is_quit = true;
-    //Make text
-    TextObject time_game;
-    TextObject score_game;
+    
     //Make Board
     Board board;
     board.Show_Board(g_screen);
- 
+
     SDL_Flip(g_screen);
     while (!is_quit)
     {
-        SDLCommonFunc::ApplySurface(g_bkground, g_screen, 0, 0,SCREEN_HEIGHT,SCREEN_WIDTH);
+        SDLCommonFunc::ApplySurface(g_bkground, g_screen, 0, 0, SCREEN_HEIGHT, SCREEN_WIDTH);
         while (SDL_PollEvent(&g_even))
         {
             if (g_even.type == SDL_QUIT)
@@ -67,7 +52,7 @@ int main(int arc, char* argv[])
                 break;
             }
         }
-        
+
         board.HandleInputAction(g_even);
         board.convert();
         board.Show_Board(g_screen);
@@ -90,19 +75,19 @@ int main(int arc, char* argv[])
         score_game.SetRect(WIDTH_BACKGROUND - 120, 30);
         score_game.CreatFontText(g_font_text, g_screen);
         if (SDL_Flip(g_screen) == -1)
-            return 0;
+            return ;
 
 
         if (board.CheckBoard())
         {
             if (SDL_Flip(g_screen) == -1)
-                return 0;
+                return ;
             if (MessageBox(NULL, L"You Win!", L"Infomation", MB_ICONINFORMATION) == IDOK)
-            {                
+            {
                 break;
             }
         }
-        
+
         if (time_val == 0)
         {
 
@@ -111,13 +96,107 @@ int main(int arc, char* argv[])
                 break;
             }
         }
-      
 
-       
+
+
         SDL_Delay(70);
     }
+}
+void PlayMode2()
+{
+
+    //Make Board
+    Board5x5 board; 
+    board.Show_Board(g_screen);
+
+    SDL_Flip(g_screen);
+    while (!is_quit)
+    {
+        SDLCommonFunc::ApplySurface(g_bkground, g_screen, 0, 0, SCREEN_HEIGHT, SCREEN_WIDTH);
+        while (SDL_PollEvent(&g_even))
+        {
+            if (g_even.type == SDL_QUIT)
+            {
+                is_quit = true;
+                break;
+            }
+        }
+
+        board.HandleInputAction(g_even);
+        board.convert();
+        board.Show_Board(g_screen);
+        //Show time for game
+
+        std::string str_time = "Time: ";
+        Uint32 time_val = TIME_PLAYING - SDL_GetTicks() / 1000;
+        std::string str_val = std::to_string(time_val);
+        str_time += str_val;
+        time_game.SetText(str_time);
+        time_game.SetRect(WIDTH_BACKGROUND - 120, 10);
+        time_game.CreatFontText(g_font_text, g_screen);
+        //Show score
+        std::string str_score = "Score: ";
+        Uint32 score_val = board.score();
+        std::string str_score_val = std::to_string(score_val);
+        str_score += str_score_val;
+        str_score += "/25";
+        score_game.SetText(str_score);
+        score_game.SetRect(WIDTH_BACKGROUND - 120, 30);
+        score_game.CreatFontText(g_font_text, g_screen);
+        if (SDL_Flip(g_screen) == -1)
+            return ;
+       
+
+        if (board.CheckBoard())
+        {
+            if (SDL_Flip(g_screen) == -1)
+                return ;
+            if (MessageBox(NULL, L"You Win!", L"Infomation", MB_ICONINFORMATION) == IDOK)
+            {
+                break;
+            }
+        }
+
+        if (time_val == 0)
+        {
+
+            if (MessageBox(NULL, L"GameOver!", L"Infomation", MB_ICONINFORMATION) == IDOK)
+            {
+                break;
+            }
+        }
+
+
+
+        SDL_Delay(70);
+    }
+}
+
+
+
+
+int main(int arc, char* argv[])
+{
+    
+    if (Init() == false)
+        return 0;
+    // Apply Background
+    g_bkground = SDLCommonFunc::LoadImage("image/background.png");
+    if (g_bkground == NULL)
+    {
+        return 0;
+    }
+    //Menu
+    int num_menu = SDLCommonFunc::ShowMenu(g_screen, g_font_text);
+    if (num_menu == 2)
+        is_quit = true;
+    else if (num_menu == 0)
+        PlayMode1();
+    else if (num_menu == 1)
+        PlayMode2();
    
-   
+
+
     
     SDLCommonFunc::CleanUp();
     SDL_Quit();

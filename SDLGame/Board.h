@@ -1,9 +1,5 @@
 #ifndef BOARD_H_
 #define BOARD_H_
-const int RIGHT = 0;
-const int LEFT = 1;
-const int UP = 2;
-const int DOWN = 3;
 #include "CommonFunction.h"
 #include "Cell.h"
 #include<iostream>

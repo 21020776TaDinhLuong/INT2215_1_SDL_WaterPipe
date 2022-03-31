@@ -143,6 +143,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
+    <ClCompile Include="Board5x5.cpp" />
     <ClCompile Include="Cell.cpp" />
     <ClCompile Include="CommonFunction.cpp" />
     <ClCompile Include="main.cpp" />
@@ -150,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h" />
+    <ClInclude Include="Board5x5.h" />
     <ClInclude Include="Cell.h" />
     <ClInclude Include="CommonFunction.h" />
     <ClInclude Include="TextObject.h" />
