@@ -33,12 +33,13 @@ bool Init()
     return true;
     
 }
-void PlayMode1()
+bool PlayMode1()
 {
     
     //Make Board
     Board board;
     board.Show_Board(g_screen);
+    Uint32 start_time = SDL_GetTicks();
 
     SDL_Flip(g_screen);
     while (!is_quit)
@@ -49,7 +50,14 @@ void PlayMode1()
             if (g_even.type == SDL_QUIT)
             {
                 is_quit = true;
-                break;
+                return true;
+            }
+            if (g_even.type == SDL_KEYDOWN)
+            {
+                if (g_even.key.keysym.sym == SDLK_ESCAPE)
+                {
+                    return true;
+                }
             }
         }
 
@@ -59,14 +67,14 @@ void PlayMode1()
         //Show time for game
 
         std::string str_time = "Time: ";
-        Uint32 time_val = TIME_PLAYING - SDL_GetTicks() / 1000;
+        Uint32 time_val = TIME_PLAYING - (SDL_GetTicks() - start_time)/ 1000;
         std::string str_val = std::to_string(time_val);
         str_time += str_val;
         time_game.SetText(str_time);
         time_game.SetRect(WIDTH_BACKGROUND - 120, 10);
         time_game.CreatFontText(g_font_text, g_screen);
         //Show score
-        std::string str_score = "Score: ";
+        std::string str_score = "Filled: ";
         Uint32 score_val = board.score();
         std::string str_score_val = std::to_string(score_val);
         str_score += str_score_val;
@@ -75,13 +83,13 @@ void PlayMode1()
         score_game.SetRect(WIDTH_BACKGROUND - 120, 30);
         score_game.CreatFontText(g_font_text, g_screen);
         if (SDL_Flip(g_screen) == -1)
-            return ;
+            return true ;
 
 
         if (board.CheckBoard())
         {
             if (SDL_Flip(g_screen) == -1)
-                return ;
+                return true ;
             if (MessageBox(NULL, L"You Win!", L"Infomation", MB_ICONINFORMATION) == IDOK)
             {
                 break;
@@ -90,7 +98,6 @@ void PlayMode1()
 
         if (time_val == 0)
         {
-
             if (MessageBox(NULL, L"GameOver!", L"Infomation", MB_ICONINFORMATION) == IDOK)
             {
                 break;
@@ -101,14 +108,15 @@ void PlayMode1()
 
         SDL_Delay(70);
     }
+    return false;
 }
-void PlayMode2()
+bool PlayMode2()
 {
 
     //Make Board
     Board5x5 board; 
     board.Show_Board(g_screen);
-
+    Uint32 start_time = SDL_GetTicks();
     SDL_Flip(g_screen);
     while (!is_quit)
     {
@@ -118,24 +126,32 @@ void PlayMode2()
             if (g_even.type == SDL_QUIT)
             {
                 is_quit = true;
-                break;
+                return true;
+            }
+            if (g_even.type == SDL_KEYDOWN)
+            {
+                if (g_even.key.keysym.sym == SDLK_ESCAPE)
+                {
+                    return true;
+                }
             }
         }
 
         board.HandleInputAction(g_even);
         board.convert();
         board.Show_Board(g_screen);
-        //Show time for game
 
+        //Show time for game
         std::string str_time = "Time: ";
-        Uint32 time_val = TIME_PLAYING - SDL_GetTicks() / 1000;
+        Uint32 time_val = TIME_PLAYING - (SDL_GetTicks() - start_time) / 1000;
         std::string str_val = std::to_string(time_val);
         str_time += str_val;
         time_game.SetText(str_time);
         time_game.SetRect(WIDTH_BACKGROUND - 120, 10);
         time_game.CreatFontText(g_font_text, g_screen);
+
         //Show score
-        std::string str_score = "Score: ";
+        std::string str_score = "Filled: ";
         Uint32 score_val = board.score();
         std::string str_score_val = std::to_string(score_val);
         str_score += str_score_val;
@@ -144,13 +160,13 @@ void PlayMode2()
         score_game.SetRect(WIDTH_BACKGROUND - 120, 30);
         score_game.CreatFontText(g_font_text, g_screen);
         if (SDL_Flip(g_screen) == -1)
-            return ;
+            return true;
        
 
         if (board.CheckBoard())
         {
             if (SDL_Flip(g_screen) == -1)
-                return ;
+                return true;
             if (MessageBox(NULL, L"You Win!", L"Infomation", MB_ICONINFORMATION) == IDOK)
             {
                 break;
@@ -159,17 +175,14 @@ void PlayMode2()
 
         if (time_val == 0)
         {
-
             if (MessageBox(NULL, L"GameOver!", L"Infomation", MB_ICONINFORMATION) == IDOK)
             {
                 break;
             }
         }
-
-
-
         SDL_Delay(70);
     }
+    return false;
 }
 
 
@@ -187,17 +200,22 @@ int main(int arc, char* argv[])
         return 0;
     }
     //Menu
-    int num_menu = SDLCommonFunc::ShowMenu(g_screen, g_font_text);
-    if (num_menu == 2)
-        is_quit = true;
-    else if (num_menu == 0)
-        PlayMode1();
-    else if (num_menu == 1)
-        PlayMode2();
-   
-
-
-    
+    while (true)
+    {
+        int num_menu = SDLCommonFunc::ShowMenu(g_screen, g_font_text);
+        if (num_menu == 2)
+        {
+            break;      
+        }
+        bool is_done = false;
+        if (num_menu == 0)
+            is_done |= PlayMode1();
+        else if (num_menu == 1)
+            is_done |= PlayMode2();
+        if (is_done)
+            break;
+    }
+  
     SDLCommonFunc::CleanUp();
     SDL_Quit();
 

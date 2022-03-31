@@ -89,7 +89,7 @@ void Board5x5::HandleInputAction(SDL_Event events)
 	{
 		if (events.key.keysym.sym == SDLK_ESCAPE)
 		{
-			exit(1);
+			return;
 		}
 	}
 }

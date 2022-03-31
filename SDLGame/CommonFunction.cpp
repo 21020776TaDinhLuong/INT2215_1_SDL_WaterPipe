@@ -61,10 +61,10 @@ int SDLCommonFunc::ShowMenu(SDL_Surface* des, TTF_Font* font)
     pos_arr[2].x = SCREEN_WIDTH / 2 - 60;
     pos_arr[2].y = SCREEN_HEIGHT / 2 ;
     TextObject text_menu[MenuItemNum];
-    text_menu[0].SetText("Play GameMode1");
+    text_menu[0].SetText("Play Mode 4x4");
     text_menu[0].SetColor(TextObject::WHITE_TEXT);
     text_menu[0].SetRect(pos_arr[0].x, pos_arr[0].y);
-    text_menu[1].SetText("Play GameMode2");
+    text_menu[1].SetText("Play Mode 5x5");
     text_menu[1].SetColor(TextObject::WHITE_TEXT);
     text_menu[1].SetRect(pos_arr[1].x, pos_arr[1].y);
     text_menu[2].SetText("Exit");
@@ -132,7 +132,7 @@ int SDLCommonFunc::ShowMenu(SDL_Surface* des, TTF_Font* font)
             case SDL_KEYDOWN:
                 if (m_event.key.keysym.sym == SDLK_ESCAPE)
                 {
-                    return 2;
+                    exit(2);
                 }
 
             default:
