@@ -199,9 +199,10 @@ int main(int arc, char* argv[])
     {
         return 0;
     }
-    //Menu
+    
     while (true)
     {
+        //Menu
         int num_menu = SDLCommonFunc::ShowMenu(g_screen, g_font_text);
         if (num_menu == 2)
         {
