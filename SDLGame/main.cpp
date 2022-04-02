@@ -25,7 +25,7 @@ bool Init()
     if (TTF_Init() == -1) {
         return false;
     }
-    g_font_text = TTF_OpenFont("Raleway-Medium.ttf", 20);
+    g_font_text = TTF_OpenFont("font/Raleway-Medium.ttf", 20);
     if (g_font_text == NULL )
     {
         return false;
