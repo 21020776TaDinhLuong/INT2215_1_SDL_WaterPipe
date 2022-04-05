@@ -33,6 +33,9 @@
     <ClCompile Include="Board5x5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Extension.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonFunction.h">
@@ -48,6 +51,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Board5x5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Extension.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

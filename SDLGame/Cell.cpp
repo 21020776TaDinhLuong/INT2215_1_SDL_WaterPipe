@@ -1,5 +1,4 @@
 #include "Cell.h"
-#include <iostream>
 Cell::Cell()
 {
     rect_.x = 0;

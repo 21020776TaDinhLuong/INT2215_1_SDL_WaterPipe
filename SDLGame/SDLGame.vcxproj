@@ -146,6 +146,7 @@
     <ClCompile Include="Board5x5.cpp" />
     <ClCompile Include="Cell.cpp" />
     <ClCompile Include="CommonFunction.cpp" />
+    <ClCompile Include="Extension.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TextObject.cpp" />
   </ItemGroup>
@@ -154,6 +155,7 @@
     <ClInclude Include="Board5x5.h" />
     <ClInclude Include="Cell.h" />
     <ClInclude Include="CommonFunction.h" />
+    <ClInclude Include="Extension.h" />
     <ClInclude Include="TextObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

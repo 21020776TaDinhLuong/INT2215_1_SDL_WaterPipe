@@ -2,13 +2,16 @@
 #include "Board.h"
 #include "Board5x5.h"
 #include"TextObject.h"
+#include"Extension.h"
 
 #undef main
 TTF_Font* g_font_text = NULL;
+std::string highscore;
 bool is_quit = false;
 //Make text
 TextObject time_game;
 TextObject score_game;
+TextObject high_score;
 
 bool Init()
 {
@@ -25,6 +28,7 @@ bool Init()
     if (TTF_Init() == -1) {
         return false;
     }
+    resetHighScore("high_score.txt");
     g_font_text = TTF_OpenFont("font/Raleway-Medium.ttf", 20);
     if (g_font_text == NULL )
     {
@@ -76,12 +80,19 @@ bool PlayMode1()
         //Show score
         std::string str_score = "Filled: ";
         Uint32 score_val = board.score();
+        updateHighScore("high_score.txt", score_val, highscore);
         std::string str_score_val = std::to_string(score_val);
         str_score += str_score_val;
         str_score += "/16";
         score_game.SetText(str_score);
         score_game.SetRect(WIDTH_BACKGROUND - 120, 30);
         score_game.CreatFontText(g_font_text, g_screen);
+        //Show highscore
+        std::string str_highscore = "High Score: ";
+        str_highscore += highscore;
+        high_score.SetText(str_highscore);
+        high_score.SetRect(WIDTH_BACKGROUND - 140, 50);
+        high_score.CreatFontText(g_font_text, g_screen);
         if (SDL_Flip(g_screen) == -1)
             return true ;
 
@@ -153,12 +164,19 @@ bool PlayMode2()
         //Show score
         std::string str_score = "Filled: ";
         Uint32 score_val = board.score();
+        updateHighScore("high_score.txt", score_val, highscore);
         std::string str_score_val = std::to_string(score_val);
         str_score += str_score_val;
         str_score += "/25";
         score_game.SetText(str_score);
         score_game.SetRect(WIDTH_BACKGROUND - 120, 30);
         score_game.CreatFontText(g_font_text, g_screen);
+        //Show highscore
+        std::string str_highscore = "High Score: ";
+        str_highscore += highscore;
+        high_score.SetText(str_highscore);
+        high_score.SetRect(WIDTH_BACKGROUND - 140, 50);
+        high_score.CreatFontText(g_font_text, g_screen);
         if (SDL_Flip(g_screen) == -1)
             return true;
        
@@ -202,6 +220,7 @@ int main(int arc, char* argv[])
     
     while (true)
     {
+        highscore = GetHighScoreFromFile("high_score.txt");
         //Menu
         int num_menu = SDLCommonFunc::ShowMenu(g_screen, g_font_text);
         if (num_menu == 2)
@@ -214,8 +233,11 @@ int main(int arc, char* argv[])
         else if (num_menu == 1)
             is_done |= PlayMode2();
         if (is_done)
+        {
             break;
+        }
     }
+
   
     SDLCommonFunc::CleanUp();
     SDL_Quit();

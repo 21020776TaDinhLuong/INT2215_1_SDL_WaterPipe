@@ -1,5 +1,4 @@
 #include "Board5x5.h"
-#include <iostream>
 
 Board5x5::Board5x5()
 {
