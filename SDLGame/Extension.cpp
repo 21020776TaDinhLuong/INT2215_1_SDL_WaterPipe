@@ -33,8 +33,6 @@ void resetHighScore(std::string path)
 {
 	int oldHighScore = 0;
 	std::fstream HighScoreFile;
-	
-
 	HighScoreFile.open(path, std::ios::out);
 	HighScoreFile << 0;
 }
