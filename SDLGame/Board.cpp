@@ -56,22 +56,16 @@ void Board::HandleInputAction(SDL_Event events)
 	if (events.type == SDL_MOUSEBUTTONDOWN)
 	{
 
-		if (events.button.button == SDL_BUTTON_LEFT)
+		if (events.button.button == SDL_BUTTON_LEFT || events.button.button == SDL_BUTTON_RIGHT)
 		{
 			int x_loc = events.button.x / HEIGHT_CELL; 
 			int y_loc = events.button.y / WIDTH_CELL;
 			arr[x_loc][y_loc].HandleInputAction(events);
 			arr[x_loc][y_loc].Show(g_screen);
-
+			
 
 		}
-		else if (events.button.button == SDL_BUTTON_RIGHT)
-		{
-			int x_loc = events.button.x / HEIGHT_CELL;
-			int y_loc = events.button.y / WIDTH_CELL;
-			arr[x_loc][y_loc].HandleInputAction(events);
-			arr[x_loc][y_loc].Show(g_screen);
-		}
+		
 	}
 	else if (events.type == SDL_KEYDOWN)
 	{
