@@ -8,7 +8,7 @@
 class Cell
 {
 public:
-
+   
     Cell();
     ~Cell();
     void Show(SDL_Surface* des);

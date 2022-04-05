@@ -5,6 +5,7 @@ Cell::Cell()
     rect_.y = 0;
     val_ = 0;
     watered = 0;
+    gClick = Mix_LoadWAV("audio/sound_mouse_click.wav");
 }
 
 Cell::~Cell()
@@ -42,7 +43,6 @@ void Cell::HandleInputAction(SDL_Event events)
             if (val_ < 14 && val_ % 4 == 0) val_ = val_ - 4;
             if (val_ == 14) val_ = 12;
             if (val_ == 18) val_ = 14;
-            gClick = Mix_LoadWAV("audio/sound_mouse_click.wav");
             Mix_PlayChannel(-1, gClick, 0);
         }
     }
