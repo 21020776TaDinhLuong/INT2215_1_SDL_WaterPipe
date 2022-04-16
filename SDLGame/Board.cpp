@@ -3,7 +3,7 @@
 
 Board::Board()
 {
-	std::vector<int> input = readWordListFromFile(inputFile[rand() % numberOfInputFile]);
+	std::vector<int> input = readNumberListFromFile(inputFile[rand() % numberOfInputFile]);
 	int index = 0;
 	for (int i = 0; i < 4; i++)
 	{
@@ -13,6 +13,7 @@ Board::Board()
 			index++;
 		}
 	}
+	index = 0;
 	arr[2][2].set_watered(1);
 
 }

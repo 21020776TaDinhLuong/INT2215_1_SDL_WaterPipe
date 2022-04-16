@@ -13,6 +13,6 @@ void updateHighScore(std::string path,
 	const int& score,
 	const std::string& old_high_score);
 void resetHighScore(std::string path);
-std::vector<int> readWordListFromFile(const std::string& filePath);
+std::vector<int> readNumberListFromFile(const std::string& filePath);
 #endif
 

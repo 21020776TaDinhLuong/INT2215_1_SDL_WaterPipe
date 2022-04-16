@@ -1,12 +1,9 @@
 #include "Extension.h"
 std::string GetHighScoreFromFile(std::string pathFile)
 {
-	std::fstream HighScoreFile;
+	std::ifstream HighScoreFile(pathFile);
 	std::string highscore;
-
-	HighScoreFile.open(pathFile, std::ios::in);
 	HighScoreFile >> highscore;
-
 	return highscore;
 }
 void updateHighScore(std::string pathFile,
@@ -14,12 +11,9 @@ void updateHighScore(std::string pathFile,
 	const std::string& old_high_score)
 {
 	int oldHighScore = 0;
-	std::fstream HighScoreFile;
+	std::ofstream HighScoreFile(pathFile);
 	std::string newHighScore;
 	std::stringstream ConvertStringToInt(old_high_score);
-
-	HighScoreFile.open(pathFile, std::ios::out);
-
 	ConvertStringToInt >> oldHighScore;
 	if (score > oldHighScore)
 	{
@@ -29,14 +23,13 @@ void updateHighScore(std::string pathFile,
 
 	HighScoreFile << newHighScore;
 }
-void resetHighScore(std::string path)
+void resetHighScore(std::string pathFile)
 {
 	int oldHighScore = 0;
-	std::fstream HighScoreFile;
-	HighScoreFile.open(path, std::ios::out);
+	std::ofstream HighScoreFile(pathFile);
 	HighScoreFile << 0;
 }
-std::vector<int> readWordListFromFile(const std::string& filePath)
+std::vector<int> readNumberListFromFile(const std::string& filePath)
 {
 	std::vector<int> numberList;
 	int num;
