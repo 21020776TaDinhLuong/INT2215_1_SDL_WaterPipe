@@ -5,12 +5,14 @@
 #include<fstream>
 #include<sstream>
 #include<string>
+#include <vector>
+
 std::string GetHighScoreFromFile(std::string path);
 
 void updateHighScore(std::string path,
 	const int& score,
 	const std::string& old_high_score);
 void resetHighScore(std::string path);
-
+std::vector<int> readWordListFromFile(const std::string& filePath);
 #endif
 

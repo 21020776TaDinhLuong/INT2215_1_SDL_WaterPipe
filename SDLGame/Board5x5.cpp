@@ -1,9 +1,10 @@
 #include "Board5x5.h"
+#include "Extension.h"
 
 Board5x5::Board5x5()
 {
 	
-	arr[0][0].set_val(1);
+	/*arr[0][0].set_val(1);
 	arr[0][1].set_val(1);
 	arr[0][2].set_val(12);
 	arr[0][3].set_val(12);
@@ -27,7 +28,17 @@ Board5x5::Board5x5()
 	arr[4][1].set_val(3);
 	arr[4][2].set_val(1);
 	arr[4][3].set_val(12);
-	arr[4][4].set_val(5);
+	arr[4][4].set_val(5);*/
+	std::vector<int> input = readWordListFromFile(inputFile1[rand() % numberOfInputFile1]);
+	int index = 0;
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			arr[i][j].set_val(input[index]);
+			index++;
+		}
+	}
 	arr[2][2].set_watered(1);
 	
 

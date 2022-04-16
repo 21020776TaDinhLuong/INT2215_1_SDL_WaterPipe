@@ -3,6 +3,7 @@
 #include "Board5x5.h"
 #include"TextObject.h"
 #include"Extension.h"
+#include<ctime>
 
 #undef main
 TTF_Font* g_font_text = NULL;
@@ -15,6 +16,7 @@ TextObject high_score;
 
 bool Init()
 {
+    srand(time(NULL));
     if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
     {   
         return false;
