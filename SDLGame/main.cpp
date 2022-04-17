@@ -40,8 +40,8 @@ bool Init()
     {
         return false;
     }
-    gClick = Mix_LoadWAV("audio/sound_mouse_click.wav");
-    if (gClick == NULL)
+    g_click = Mix_LoadWAV("audio/sound_mouse_click.wav");
+    if (g_click == NULL)
         return false;
     return true;
     

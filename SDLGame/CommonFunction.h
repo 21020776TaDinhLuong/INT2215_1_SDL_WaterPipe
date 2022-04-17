@@ -36,7 +36,7 @@ static SDL_Surface* g_screen = NULL;
 static SDL_Surface* g_bkground = NULL;
 static SDL_Surface* g_menu = NULL;
 static SDL_Event g_even;
-static Mix_Chunk* gClick = NULL;
+static Mix_Chunk* g_click = NULL;
 //Direct
 const int RIGHT = 0;
 const int LEFT = 1;
