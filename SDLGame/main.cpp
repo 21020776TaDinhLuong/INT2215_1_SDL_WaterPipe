@@ -215,7 +215,7 @@ bool PlayMode2()
 
 
 
-int main(int arc, char* argv[])
+int main(int argc, char* argv[])
 {
     
     if (Init() == false)
