@@ -59,7 +59,7 @@ void Board5x5::HandleInputAction(SDL_Event events)
 			int y_loc = events.button.y / HEIGHT_CELL_5x5;
 			arr[x_loc][y_loc].HandleInputAction(events);
 			arr[x_loc][y_loc].Show(g_screen);
-			
+			SDL_Delay(100);
 			
 
 
