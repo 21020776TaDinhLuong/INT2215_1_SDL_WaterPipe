@@ -58,7 +58,7 @@ void Board::HandleInputAction(SDL_Event events)
 			int y_loc = events.button.y / WIDTH_CELL;
 			arr[x_loc][y_loc].HandleInputAction(events);
 			arr[x_loc][y_loc].Show(g_screen);
-			
+			SDL_Delay(100);
 
 		}
 		
